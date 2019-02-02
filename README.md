@@ -1,4 +1,4 @@
-# Cyclical Stochastic Gradient MCMC for Bayesian Deep Learning
+# Cyclical Stochastic Gradient MCMC for \\ Bayesian Deep Learning
 
 This repository contains code for the paper
 [Cyclical Stochastic Gradient MCMC for Bayesian Deep Learning]()
