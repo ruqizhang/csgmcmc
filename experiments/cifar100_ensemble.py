@@ -1,6 +1,7 @@
 '''Train CIFAR10 with PyTorch.'''
 from __future__ import print_function
-
+import sys
+sys.path.append('..')
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -40,7 +41,7 @@ transform_test = transforms.Compose([
     transforms.Normalize(cf.mean['cifar100'], cf.std['cifar100']),
 ])
 
-testset = torchvision.datasets.CIFAR100(root=args.data_path, train=False, download=False, transform=transform_test)
+testset = torchvision.datasets.CIFAR100(root=args.data_path, train=False, download=True, transform=transform_test)
 testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle=False, num_workers=0)
 
 # Model
