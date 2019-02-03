@@ -76,20 +76,20 @@ experiments/cifar100_ensemble.py
 
 # Results
 ## Toy dataset
-Sampling from a mixture of 25 Gaussians in the non-parallel setting. (Left: SGLD; right: cSGLD)
 
+Sampling from a mixture of 25 Gaussians in the non-parallel setting. (one single chain)
 
 |  SGLD  |   cSGLD 
 |:-------------------------:|:-------------------------:
-| <img src="figs/sgld.png" width=300>  |   <img src="figs/csgld.png" width=300>
+| <img src="figs/sgld.png" width=200>  |   <img src="figs/csgld.png" width=200>
 
 
-Sampling from a mixture of 25 Gaussians in the parallel setting. (Left: SGLD; right: cSGLD)
+Sampling from a mixture of 25 Gaussians in the parallel setting. (4 chains)
 
-<p align="center">
-  <img src="figs/psgld.png" width=300>
-  <img src="figs/pcsgld.png" width=300>
-</p>
+|  SGLD  |   cSGLD 
+|:-------------------------:|:-------------------------:
+| <img src="figs/psgld.png" width=200>  |   <img src="figs/pcsgld.png" width=200>
+
 
 ## CIFAR
 Test Error (%) on CIFAR10 and CIFAR100.
