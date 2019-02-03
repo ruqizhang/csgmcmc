@@ -55,7 +55,7 @@ python experiments/cifar100_cSGMCMC.py --dir=<DIR> \
 ```
 
 # Evaluating Samples
-## Gaussian mixture density (25 Gaussians)
+## Gaussian Mixture Density (25 Gaussians)
 To visualize the results, please use ipython notebook to open the file
 ```
 experiments/plot_density.ipynb
