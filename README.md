@@ -10,7 +10,7 @@ This repository contains code for the paper
 Cyclical Stochastic Gradient MCMC (cSG-MCMC) is proposed to automatically explore complex multimodal distributions. The key idea is to adapt a cyclical stepsize schedule, where larger steps discover new modes, and smaller steps characterize each mode. We prove that our proposed learning rate schedule provides faster convergence to samples from a stationary distribution than SG-MCMC with standard decaying schedules. Below is an illustration of the proposed cyclical stepsize schedule (red) and the traditional decreasing stepsize schedule (blue) for SG-MCMC algorithms.
 
 <p align="center">
-  <img src="figs/lr-exp.pdf">
+  <img src="figs/lr-exp.png">
 </p>
 
 # Dependencies
@@ -78,15 +78,15 @@ experiments/cifar100_ensemble.py
 Sampling from a mixture of 25 Gaussians in the non-parallel setting. (Left: SGLD; right: cSGLD)
 
 <p align="center">
-  <img src="figs/sgld.pdf" width=300>
-  <img src="figs/csgld.pdf" width=300>
+  <img src="figs/sgld.png" width=300>
+  <img src="figs/csgld.png" width=300>
 </p>
 
 Sampling from a mixture of 25 Gaussians in the parallel setting. (Left: SGLD; right: cSGLD)
 
 <p align="center">
-  <img src="figs/psgld.pdf" width=300>
-  <img src="figs/pcsgld.pdf" width=300>
+  <img src="figs/psgld.png" width=300>
+  <img src="figs/pcsgld.png" width=300>
 </p>
 
 ## CIFAR
