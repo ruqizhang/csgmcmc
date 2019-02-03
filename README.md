@@ -19,7 +19,7 @@ This repository contains code for the paper
 * [torchvision](https://github.com/pytorch/vision/)
 
 # Experiments
-## Toy dataset (25 Gaussians)
+## Gaussian Mixture Density (25 Gaussians)
 
 To generate samples from mixture of Gaussians (single chain results), please run
 
