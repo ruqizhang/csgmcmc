@@ -6,6 +6,12 @@ This repository contains code for the paper
 ```bibtex
 
 ```
+# Introduction
+Cyclical Stochastic Gradient MCMC (cSG-MCMC) is proposed to automatically explore complex multimodal distributions. The key idea is to adapt a cyclical stepsize schedule, where larger steps discover new modes, and smaller steps characterize each mode. We prove that our proposed learning rate schedule provides faster convergence to samples from a stationary distribution than SG-MCMC with standard decaying schedules. Below is an illustration of the proposed cyclical stepsize schedule (red) and the traditional decreasing stepsize schedule (blue) for SG-MCMC algorithms.
+
+<p align="center">
+  <img src="figs/lr-exp.pdf">
+</p>
 
 # Dependencies
 * [PyTorch](http://pytorch.org/)
@@ -66,6 +72,31 @@ To test the ensemble of the collected samples on CIFAR100, run
 ```
 experiments/cifar100_ensemble.py
 ```
+
+# Results
+## Toy dataset
+Sampling from a mixture of 25 Gaussians in the non-parallel setting. (Left: SGLD; right: cSGLD)
+
+<p align="center">
+  <img src="figs/sgld.pdf" width=300>
+  <img src="figs/csgld.pdf" width=300>
+</p>
+
+Sampling from a mixture of 25 Gaussians in the parallel setting. (Left: SGLD; right: cSGLD)
+
+<p align="center">
+  <img src="figs/psgld.pdf" width=300>
+  <img src="figs/pcsgld.pdf" width=300>
+</p>
+
+## CIFAR
+Test Error (%) on CIFAR10 and CIFAR100.
+
+| Dataset                   |  SGLD        | cSGLD        | SGHMC            | cSGHMC          |
+| ------------------------- |:------------:|:------------:|:----------------:|:---------------:|
+| CIFAR10                   | 5.20 ± 0.06  | 4.29 ± 0.06  | 4.93 ± 0.1       | 4.27 ± 0.03     |
+| CIFAR100                  | 23.23 ± 0.01 | 20.55 ± 0.06 | 22.60 ± 0.17     | 20.50 ± 0.11    |
+
 
 # References
 * Code of Gaussian mixtures is adapted from https://github.com/tqchen/ML-SGHMC
