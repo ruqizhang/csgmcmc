@@ -78,6 +78,10 @@ experiments/cifar100_ensemble.py
 ## Toy dataset
 Sampling from a mixture of 25 Gaussians in the non-parallel setting. (Left: SGLD; right: cSGLD)
 
+|  RAS  |   GAN 
+|:-------------------------:|:-------------------------:
+| <img src="figs/sgld.png" width=300>  |   <img src="figs/csgld.png" width=300>
+
 <p align="center">
   <img src="figs/sgld.png" width=300>
   <img src="figs/csgld.png" width=300>
