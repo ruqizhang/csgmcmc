@@ -59,7 +59,7 @@ To visualize the results, please use ipython notebook to open the file
 ```
 experiments/plot_density.ipynb
 ```
-Cached results from our runs are inlcuded.
+Cached results from our runs are included.
 
 ## CIFAR10
 To test the ensemble of the collected samples on CIFAR10, run
