@@ -55,7 +55,7 @@ python experiments/cifar100_cSGMCMC.py --dir=<DIR> \
 ```
 
 # Evaluating Samples
-## Toy dataset (25 Gaussians)
+## Gaussian mixture density (25 Gaussians)
 To visualize the results, please use ipython notebook to open the file
 ```
 experiments/plot_density.ipynb
@@ -75,7 +75,7 @@ experiments/cifar100_ensemble.py
 ```
 
 # Results
-## Toy dataset
+## Gaussian Mixture Density
 
 Sampling from a mixture of 25 Gaussians in the non-parallel setting. (one single chain)
 
