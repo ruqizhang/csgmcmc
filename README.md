@@ -15,8 +15,8 @@ This repository contains code for the paper
 
 
 # Dependencies
-* [PyTorch](http://pytorch.org/)
-* [torchvision](https://github.com/pytorch/vision/)
+* [PyTorch 0.3.1](http://pytorch.org/) 
+* [torchvision 0.2.0](https://github.com/pytorch/vision/)
 
 # Experiments
 ## Gaussian Mixture Density (25 Gaussians)
