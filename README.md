@@ -7,18 +7,19 @@ This repository contains code for the paper
 
 ```
 # Introduction
-Cyclical Stochastic Gradient MCMC (cSG-MCMC) is proposed to automatically explore complex multimodal distributions. The key idea is to adapt a cyclical stepsize schedule, where larger steps discover new modes, and smaller steps characterize each mode. We prove that our proposed learning rate schedule provides faster convergence to samples from a stationary distribution than SG-MCMC with standard decaying schedules. Below is an illustration of the proposed cyclical stepsize schedule (red) and the traditional decreasing stepsize schedule (blue) for SG-MCMC algorithms.
+**Cyclical Stochastic Gradient MCMC (cSG-MCMC)** is proposed to efficiently explore complex multimodal distributions, such as those encountered for modern deep neural networks. The key idea is to adapt a cyclical stepsize schedule, where larger steps discover new modes, and smaller steps characterize each mode. We prove that our proposed learning rate schedule provides faster convergence to samples from a stationary distribution than SG-MCMC with standard decaying schedules. Below is an illustration of the proposed cyclical stepsize schedule (red) and the traditional decreasing stepsize schedule (blue) for SG-MCMC algorithms.
 
 <p align="center">
-  <img src="figs/lr-exp.png">
+  <img src="figs/lr-exp.png" width="500">
 </p>
 
+
 # Dependencies
-* [PyTorch](http://pytorch.org/)
-* [torchvision](https://github.com/pytorch/vision/)
+* [PyTorch 0.3.1](http://pytorch.org/) 
+* [torchvision 0.2.0](https://github.com/pytorch/vision/)
 
 # Experiments
-## Toy dataset (25 Gaussians)
+## Gaussian Mixture Density (25 Gaussians)
 
 To generate samples from mixture of Gaussians (single chain results), please run
 
@@ -54,7 +55,7 @@ python experiments/cifar100_cSGMCMC.py --dir=<DIR> \
 ```
 
 # Evaluating Samples
-## Toy dataset (25 Gaussians)
+## Gaussian Mixture Density (25 Gaussians)
 To visualize the results, please use ipython notebook to open the file
 ```
 experiments/plot_density.ipynb
@@ -74,20 +75,21 @@ experiments/cifar100_ensemble.py
 ```
 
 # Results
-## Toy dataset
-Sampling from a mixture of 25 Gaussians in the non-parallel setting. (Left: SGLD; right: cSGLD)
+## Gaussian Mixture Density
 
-<p align="center">
-  <img src="figs/sgld.png" width=300>
-  <img src="figs/csgld.png" width=300>
-</p>
+Sampling from a mixture of 25 Gaussians in the non-parallel setting. (one single chain)
 
-Sampling from a mixture of 25 Gaussians in the parallel setting. (Left: SGLD; right: cSGLD)
+|  SGLD  |   cSGLD 
+|:-------------------------:|:-------------------------:
+| <img src="figs/sgld.png" width=200>  |   <img src="figs/csgld.png" width=200>
 
-<p align="center">
-  <img src="figs/psgld.png" width=300>
-  <img src="figs/pcsgld.png" width=300>
-</p>
+
+Sampling from a mixture of 25 Gaussians in the parallel setting. (4 chains)
+
+|  SGLD  |   cSGLD 
+|:-------------------------:|:-------------------------:
+| <img src="figs/psgld.png" width=200>  |   <img src="figs/pcsgld.png" width=200>
+
 
 ## CIFAR
 Test Error (%) on CIFAR10 and CIFAR100.
