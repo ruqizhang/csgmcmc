@@ -18,64 +18,18 @@ This repository contains code for the paper
 * [PyTorch 0.3.1](http://pytorch.org/) 
 * [torchvision 0.2.0](https://github.com/pytorch/vision/)
 
-# Experiments
+# Experimental Results
 ## Gaussian Mixture Density (25 Gaussians)
 
-To generate samples from mixture of Gaussians (single chain results), please run
+To generate samples from mixture of Gaussians (single chain results), please run `experiments/mog25.m`
 
-```
-experiments/mog25.m
-```
-The two stepsize schedules are used in lines
+The two different stepsize schedules are called in lines:
 
     dsgld = sgld( gradUNoise, etaSGLD, L, x0, V );
     dcsgld = csgld( gradUNoise, etacSGLD, L, M, x0, V );
 
-## CIFAR10
-To train models with cSG-MCMC on CIFAR10, run:
-```
-python experiments/cifar10_cSGMCMC.py --dir=<DIR> \
-                                      --data_path=<PATH> \
-                                      --alpha=<ALPHA>
-```
-Parameters:
 
-* ```DIR``` &mdash; path to training directory where samples will be stored
-* ```PATH``` &mdash; path to the data directory
-* ```ALPHA``` &mdash; One minus the momentum term. One is corresponding to SGLD and a number which is less than one is corresponding to SGHMC. (default: 1)
-
-## CIFAR100
-
-Similarly, for CIFAR100, run
-
-```
-python experiments/cifar100_cSGMCMC.py --dir=<DIR> \
-                                      --data_path=<PATH> \
-                                      --alpha=<ALPHA>
-```
-
-# Evaluating Samples
-## Gaussian Mixture Density (25 Gaussians)
-To visualize the results, please use ipython notebook to open the file
-```
-experiments/plot_density.ipynb
-```
-Cached results from our runs are included.
-
-## CIFAR10
-To test the ensemble of the collected samples on CIFAR10, run
-```
-experiments/cifar10_ensemble.py
-```
-
-## CIFAR100
-To test the ensemble of the collected samples on CIFAR100, run
-```
-experiments/cifar100_ensemble.py
-```
-
-# Results
-## Gaussian Mixture Density
+To visualize the results, please use ipython notebook to open the file `experiments/plot_density.ipynb`. Cached results from our runs are included.
 
 Sampling from a mixture of 25 Gaussians in the non-parallel setting. (one single chain)
 
@@ -91,7 +45,35 @@ Sampling from a mixture of 25 Gaussians in the parallel setting. (4 chains)
 | <img src="figs/psgld.png" width=200>  |   <img src="figs/pcsgld.png" width=200>
 
 
-## CIFAR
+
+## CIFAR10
+To train models with cSG-MCMC on CIFAR10, run:
+```
+python experiments/cifar10_cSGMCMC.py --dir=<DIR> \
+                                      --data_path=<PATH> \
+                                      --alpha=<ALPHA>
+```
+Parameters:
+
+* ```DIR``` &mdash; path to training directory where samples will be stored
+* ```PATH``` &mdash; path to the data directory
+* ```ALPHA``` &mdash; One minus the momentum term. One is corresponding to SGLD and a number which is less than one is corresponding to SGHMC. (default: 1)
+
+To test the ensemble of the collected samples on CIFAR10, run `experiments/cifar10_ensemble.py`
+
+
+## CIFAR100
+
+Similarly, for CIFAR100, run
+
+```
+python experiments/cifar100_cSGMCMC.py --dir=<DIR> \
+                                      --data_path=<PATH> \
+                                      --alpha=<ALPHA>
+```
+
+To test the ensemble of the collected samples on CIFAR100, run `experiments/cifar100_ensemble.py`
+
 Test Error (%) on CIFAR10 and CIFAR100.
 
 | Dataset                   |  SGLD        | cSGLD        | SGHMC            | cSGHMC          |
