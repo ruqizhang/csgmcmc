@@ -46,8 +46,8 @@ Sampling from a mixture of 25 Gaussians in the parallel setting. (4 chains)
 
 
 
-## CIFAR10
-To train models with cSG-MCMC on CIFAR10, run:
+## CIFAR-10
+To train models with cSG-MCMC on CIFAR-10, run:
 ```
 python experiments/cifar10_cSGMCMC.py --dir=<DIR> \
                                       --data_path=<PATH> \
@@ -59,12 +59,12 @@ Parameters:
 * ```PATH``` &mdash; path to the data directory
 * ```ALPHA``` &mdash; One minus the momentum term. One is corresponding to SGLD and a number which is less than one is corresponding to SGHMC. (default: 1)
 
-To test the ensemble of the collected samples on CIFAR10, run `experiments/cifar10_ensemble.py`
+To test the ensemble of the collected samples on CIFAR-10, run `experiments/cifar10_ensemble.py`
 
 
-## CIFAR100
+## CIFAR-100
 
-Similarly, for CIFAR100, run
+Similarly, for CIFAR-100, run
 
 ```
 python experiments/cifar100_cSGMCMC.py --dir=<DIR> \
@@ -72,14 +72,14 @@ python experiments/cifar100_cSGMCMC.py --dir=<DIR> \
                                       --alpha=<ALPHA>
 ```
 
-To test the ensemble of the collected samples on CIFAR100, run `experiments/cifar100_ensemble.py`
+To test the ensemble of the collected samples on CIFAR-100, run `experiments/cifar100_ensemble.py`
 
-Test Error (%) on CIFAR10 and CIFAR100.
+Test Error (%) on CIFAR-10 and CIFAR-100.
 
 | Dataset                   |  SGLD        | cSGLD        | SGHMC            | cSGHMC          |
 | ------------------------- |:------------:|:------------:|:----------------:|:---------------:|
-| CIFAR10                   | 5.20 ± 0.06  | 4.29 ± 0.06  | 4.93 ± 0.1       | 4.27 ± 0.03     |
-| CIFAR100                  | 23.23 ± 0.01 | 20.55 ± 0.06 | 22.60 ± 0.17     | 20.50 ± 0.11    |
+| CIFAR-10                   | 5.20 ± 0.06  | 4.29 ± 0.06  | 4.93 ± 0.1       | 4.27 ± 0.03     |
+| CIFAR-100                  | 23.23 ± 0.01 | 20.55 ± 0.06 | 22.60 ± 0.17     | 20.50 ± 0.11    |
 
 
 # References
