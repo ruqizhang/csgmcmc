@@ -7,7 +7,9 @@ This repository contains code for the paper
 
 ```
 # Introduction
-**Cyclical Stochastic Gradient MCMC (cSG-MCMC)** is proposed to efficiently explore complex multimodal distributions, such as those encountered for modern deep neural networks. The key idea is to adapt a cyclical stepsize schedule, where larger steps discover new modes, and smaller steps characterize each mode. We prove that our proposed learning rate schedule provides faster convergence to samples from a stationary distribution than SG-MCMC with standard decaying schedules. Below is an illustration of the proposed cyclical stepsize schedule (red) and the traditional decreasing stepsize schedule (blue) for SG-MCMC algorithms.
+**Cyclical Stochastic Gradient MCMC (cSG-MCMC)** is proposed to efficiently explore complex multimodal distributions, such as those encountered for modern deep neural networks. 
+
+The key idea is to adapt a cyclical stepsize schedule, where larger steps discover new modes, and smaller steps characterize each mode. We prove that our proposed learning rate schedule provides faster convergence to samples from a stationary distribution than SG-MCMC with standard decaying schedules. The figure below is an illustration of the proposed cyclical stepsize schedule (red) and the traditional decreasing stepsize schedule (blue) for SG-MCMC algorithms. The cSG-MCMC consist of two stages: *Exploration* and *Sampling*.
 
 <p align="center">
   <img src="figs/lr-exp.png" width="500">
@@ -25,20 +27,21 @@ To generate samples from mixture of Gaussians (single chain results), please run
 
 The two different stepsize schedules are called in lines:
 
+```
     dsgld = sgld( gradUNoise, etaSGLD, L, x0, V );
     dcsgld = csgld( gradUNoise, etacSGLD, L, M, x0, V );
-
+```
 
 To visualize the results, please use ipython notebook to open the file `experiments/plot_density.ipynb`. Cached results from our runs are included.
 
-Sampling from a mixture of 25 Gaussians in the non-parallel setting. (one single chain)
+Sampling from a mixture of 25 Gaussians in the non-parallel setting (one single chain).
 
 |  SGLD  |   cSGLD 
 |:-------------------------:|:-------------------------:
 | <img src="figs/sgld.png" width=200>  |   <img src="figs/csgld.png" width=200>
 
 
-Sampling from a mixture of 25 Gaussians in the parallel setting. (4 chains)
+Sampling from a mixture of 25 Gaussians in the parallel setting (4 chains).
 
 |  SGLD  |   cSGLD 
 |:-------------------------:|:-------------------------:
