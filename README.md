@@ -6,7 +6,7 @@ This repository contains code for the paper
 ```bibtex
 @article{zhang2019csgmcmc,
   title={Cyclical Stochastic Gradient MCMC for Bayesian Deep Learning},
-  author={Ruqi Zhang, Chunyuan Li, Jianyi Zhang, Changyou Chen, Andrew Gordon Wilson},
+  author={Zhang, Ruqi and Li, Chunyuan and Zhang, Jianyi and Chen, Changyou and Wilson, Andrew Gordon},
   journal={arXiv preprint arXiv:1902.03932},
   year={2019}
 }
