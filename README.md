@@ -4,7 +4,12 @@ This repository contains code for the paper
 [Cyclical Stochastic Gradient MCMC for Bayesian Deep Learning]()
 
 ```bibtex
-
+@article{zhang2019csgmcmc,
+  title={Cyclical Stochastic Gradient MCMC for Bayesian Deep Learning},
+  author={Ruqi Zhang, Chunyuan Li, Jianyi Zhang, Changyou Chen, Andrew Gordon Wilson},
+  journal={arXiv preprint arXiv:1902.03932},
+  year={2019}
+}
 ```
 # Introduction
 **Cyclical Stochastic Gradient MCMC (cSG-MCMC)** is proposed to efficiently explore complex multimodal distributions, such as those encountered for modern deep neural networks. 
