@@ -76,7 +76,7 @@ def prior_loss(prior_std):
 
 def noise_loss(lr,alpha):
     noise_loss = 0.0
-    noise_std = 2*lr*alpha**0.5
+    noise_std = (2/lr*alpha)**0.5
     for var in net.parameters():
         means = torch.zeros(var.size()).cuda(device_id)
         noise_loss += torch.sum(var * Variable(torch.normal(means, std = noise_std).cuda(device_id),
