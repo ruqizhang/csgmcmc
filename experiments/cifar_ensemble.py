@@ -74,7 +74,7 @@ def test():
         inputs, targets = Variable(inputs, volatile=True), Variable(targets)
         truth_res += list(targets.data)
         outputs = net(inputs)
-        pred_list.append(outputs)
+        pred_list.append(F.softmax(outputs,dim=1))
         loss = criterion(outputs, targets)
 
         test_loss += loss.data[0]
