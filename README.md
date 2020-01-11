@@ -1,14 +1,14 @@
 # Cyclical Stochastic Gradient MCMC for Bayesian Deep Learning
 
 This repository contains code for the paper
-[Cyclical Stochastic Gradient MCMC for Bayesian Deep Learning](https://arxiv.org/abs/1902.03932)
+[Cyclical Stochastic Gradient MCMC for Bayesian Deep Learning](https://arxiv.org/abs/1902.03932), accepted in _International Conference on Learning Representations (ICLR), 2020_ as _Oral Presentation_ (acceptance rate = 1.85%).
 
 ```bibtex
 @article{zhang2019csgmcmc,
   title={Cyclical Stochastic Gradient MCMC for Bayesian Deep Learning},
   author={Zhang, Ruqi and Li, Chunyuan and Zhang, Jianyi and Chen, Changyou and Wilson, Andrew Gordon},
-  journal={arXiv preprint arXiv:1902.03932},
-  year={2019}
+  journal={International Conference on Learning Representations},
+  year={2020}
 }
 ```
 # Introduction
