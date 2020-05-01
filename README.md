@@ -22,8 +22,9 @@ The key idea is to adapt a cyclical stepsize schedule, where larger steps discov
 
 
 # Dependencies
-* [PyTorch 0.3.1](http://pytorch.org/) 
-* [torchvision 0.2.0](https://github.com/pytorch/vision/)
+* Python 2.7
+* [PyTorch 1.2.0](http://pytorch.org/) 
+* [torchvision 0.4.0](https://github.com/pytorch/vision/)
 
 # Experimental Results
 ## Gaussian Mixture Density (25 Gaussians)
@@ -55,19 +56,27 @@ Sampling from a mixture of 25 Gaussians in the parallel setting (4 chains).
 
 
 ## CIFAR-10
-To train models with cSG-MCMC on CIFAR-10, run:
+To train models with cSGLD on CIFAR-10, run:
 ```
-python experiments/cifar10_cSGMCMC.py --dir=<DIR> \
-                                      --data_path=<PATH> \
-                                      --alpha=<ALPHA>
+python experiments/cifar_csgmcmc.py --dir=<DIR> \
+                                    --data_path=<PATH> \
+                                    --temperature=<TEMPERATURE>
+```
+To train models with cSGHMC on CIFAR-10, run:
+```
+python experiments/cifar_csghmc.py --dir=<DIR> \
+                                   --data_path=<PATH> \
+                                   --temperature=<TEMPERATURE> \
+                                   --alpha=<ALPHA>
 ```
 Parameters:
 
 * ```DIR``` &mdash; path to training directory where samples will be stored
 * ```PATH``` &mdash; path to the data directory
-* ```ALPHA``` &mdash; One minus the momentum term. One is corresponding to SGLD and a number which is less than one is corresponding to SGHMC. (default: 1)
+* ```ALPHA``` &mdash; One minus the momentum term. One is corresponding to SGLD and a number which is less than one is corresponding to SGHMC
+* ```TEMPERATURE``` &mdash; temperature in the posterior
 
-To test the ensemble of the collected samples on CIFAR-10, run `experiments/cifar10_ensemble.py`
+To test the ensemble of the collected samples on CIFAR-10, run `experiments/cifar_ensemble.py`
 
 
 ## CIFAR-100
@@ -75,8 +84,15 @@ To test the ensemble of the collected samples on CIFAR-10, run `experiments/cifa
 Similarly, for CIFAR-100, run
 
 ```
-python experiments/cifar100_cSGMCMC.py --dir=<DIR> \
+python experiments/cifar100_csgmcmc.py --dir=<DIR> \
                                       --data_path=<PATH> \
+                                      --temperature=<TEMPERATURE>
+```
+
+```
+python experiments/cifar100_csghmc.py --dir=<DIR> \
+                                      --data_path=<PATH> \
+                                      --temperature=<TEMPERATURE> \
                                       --alpha=<ALPHA>
 ```
 
