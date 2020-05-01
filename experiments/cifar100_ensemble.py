@@ -70,19 +70,19 @@ def test():
     total = 0
     pred_list = []
     truth_res = []
-    for batch_idx, (inputs, targets) in enumerate(testloader):
-        if use_cuda:
-            inputs, targets = inputs.cuda(device_id), targets.cuda(device_id)
-        inputs, targets = Variable(inputs, volatile=True), Variable(targets)
-        truth_res += list(targets.data)
-        outputs = net(inputs)
-        pred_list.append(F.softmax(outputs,dim=1))
-        loss = criterion(outputs, targets)
+    with torch.no_grad():
+        for batch_idx, (inputs, targets) in enumerate(testloader):
+            if use_cuda:
+                inputs, targets = inputs.cuda(device_id), targets.cuda(device_id)
+            truth_res += list(targets.data)
+            outputs = net(inputs)
+            pred_list.append(F.softmax(outputs,dim=1))
+            loss = criterion(outputs, targets)
 
-        test_loss += loss.data[0]
-        _, predicted = torch.max(outputs.data, 1)
-        total += targets.size(0)
-        correct += predicted.eq(targets.data).cpu().sum()
+            test_loss += loss.data.item()
+            _, predicted = torch.max(outputs.data, 1)
+            total += targets.size(0)
+            correct += predicted.eq(targets.data).cpu().sum()
 
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
         test_loss/len(testloader), correct, total,

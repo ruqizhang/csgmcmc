@@ -29,10 +29,13 @@ parser.add_argument('--epochs', type=int, default=200,
 parser.add_argument('--batch-size', type=int, default=64,
                     help='input batch size for training (default: 64)')
 parser.add_argument('--alpha', type=int, default=1,
-                    help='1: SGLD; <1: SGHMC')
+                    help='1: SGLD')
 parser.add_argument('--device_id',type = int, help = 'device id to use')
 parser.add_argument('--seed', type=int, default=1,
                     help='random seed')
+parser.add_argument('--temperature', type=float, default=1./50000,
+                    help='temperature (default: 1/dataset_size)')
+
 args = parser.parse_args()
 device_id = args.device_id
 use_cuda = torch.cuda.is_available()
@@ -68,20 +71,12 @@ if use_cuda:
     cudnn.benchmark = True
     cudnn.deterministic = True
 
-def prior_loss(prior_std):
-    prior_loss = 0.0
-    for var in net.parameters():
-        nn = torch.div(var, prior_std)
-        prior_loss += torch.sum(nn*nn)
-    return 0.5*prior_loss
-
 def noise_loss(lr,alpha):
     noise_loss = 0.0
     noise_std = (2/lr*alpha)**0.5
     for var in net.parameters():
         means = torch.zeros(var.size()).cuda(device_id)
-        noise_loss += torch.sum(var * Variable(torch.normal(means, std = noise_std).cuda(device_id),
-                           requires_grad = False))
+        noise_loss += torch.sum(var * torch.normal(means, std = noise_std).cuda(device_id))
     return noise_loss
 
 def adjust_learning_rate(optimizer, epoch, batch_idx):
@@ -107,18 +102,16 @@ def train(epoch):
 
         optimizer.zero_grad()
         lr = adjust_learning_rate(optimizer, epoch,batch_idx)
-        inputs, targets = Variable(inputs), Variable(targets)
         outputs = net(inputs)
         if (epoch%50)+1>47:
-            loss_prior = prior_loss(prior_std)/datasize
-            loss_noise = noise_loss(lr,args.alpha)/datasize
-            loss = criterion(outputs, targets)+loss_prior+loss_noise
+            loss_noise = noise_loss(lr,args.alpha)*(args.temperature/datasize)**.5
+            loss = criterion(outputs, targets)+loss_noise
         else:
             loss = criterion(outputs, targets)
         loss.backward()
         optimizer.step()
 
-        train_loss += loss.data[0]
+        train_loss += loss.data.item()
         _, predicted = torch.max(outputs.data, 1)
         total += targets.size(0)
         correct += predicted.eq(targets.data).cpu().sum()
@@ -133,27 +126,26 @@ def test(epoch):
     test_loss = 0
     correct = 0
     total = 0
-    for batch_idx, (inputs, targets) in enumerate(testloader):
-        if use_cuda:
-            inputs, targets = inputs.cuda(device_id), targets.cuda(device_id)
-        inputs, targets = Variable(inputs, volatile=True), Variable(targets)
-        outputs = net(inputs)
-        loss = criterion(outputs, targets)
+    with torch.no_grad():
+        for batch_idx, (inputs, targets) in enumerate(testloader):
+            if use_cuda:
+                inputs, targets = inputs.cuda(device_id), targets.cuda(device_id)
+            outputs = net(inputs)
+            loss = criterion(outputs, targets)
 
-        test_loss += loss.data[0]
-        _, predicted = torch.max(outputs.data, 1)
-        total += targets.size(0)
-        correct += predicted.eq(targets.data).cpu().sum()
+            test_loss += loss.data.item()
+            _, predicted = torch.max(outputs.data, 1)
+            total += targets.size(0)
+            correct += predicted.eq(targets.data).cpu().sum()
 
-        if batch_idx%100==0:
-            print('Test Loss: %.3f | Test Acc: %.3f%% (%d/%d)'
-                % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
+            if batch_idx%100==0:
+                print('Test Loss: %.3f | Test Acc: %.3f%% (%d/%d)'
+                    % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
 
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
     test_loss/len(testloader), correct, total,
     100. * correct / total))
 
-prior_std = 1
 datasize = 50000
 num_batch = datasize/args.batch_size+1
 lr_0 = 0.5 # initial lr
