@@ -58,16 +58,18 @@ Sampling from a mixture of 25 Gaussians in the parallel setting (4 chains).
 ## CIFAR-10
 To train models with cSGLD on CIFAR-10, run:
 ```
-python experiments/cifar_csgmcmc.py --dir=<DIR> \
-                                    --data_path=<PATH> \
-                                    --temperature=<TEMPERATURE>
+cd experiments
+python cifar_csgmcmc.py --dir=<DIR> \
+                        --data_path=<PATH> \
+                        --temperature=<TEMPERATURE>
 ```
 To train models with cSGHMC on CIFAR-10, run:
 ```
-python experiments/cifar_csghmc.py --dir=<DIR> \
-                                   --data_path=<PATH> \
-                                   --temperature=<TEMPERATURE> \
-                                   --alpha=<ALPHA>
+cd experiments
+python cifar_csghmc.py --dir=<DIR> \
+                       --data_path=<PATH> \
+                       --temperature=<TEMPERATURE> \
+                       --alpha=<ALPHA>
 ```
 Parameters:
 
@@ -84,16 +86,18 @@ To test the ensemble of the collected samples on CIFAR-10, run `experiments/cifa
 Similarly, for CIFAR-100, run
 
 ```
-python experiments/cifar100_csgmcmc.py --dir=<DIR> \
-                                      --data_path=<PATH> \
-                                      --temperature=<TEMPERATURE>
+cd experiments
+python cifar100_csgmcmc.py --dir=<DIR> \
+                           --data_path=<PATH> \
+                           --temperature=<TEMPERATURE>
 ```
 
 ```
-python experiments/cifar100_csghmc.py --dir=<DIR> \
-                                      --data_path=<PATH> \
-                                      --temperature=<TEMPERATURE> \
-                                      --alpha=<ALPHA>
+cd experiments
+python cifar100_csghmc.py --dir=<DIR> \
+                          --data_path=<PATH> \
+                          --temperature=<TEMPERATURE> \
+                          --alpha=<ALPHA>
 ```
 
 To test the ensemble of the collected samples on CIFAR-100, run `experiments/cifar100_ensemble.py`
