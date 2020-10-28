@@ -116,7 +116,7 @@ def train(epoch):
         correct += predicted.eq(targets.data).cpu().sum()
         if batch_idx%100==0:
             print('Loss: %.3f | Acc: %.3f%% (%d/%d)'
-                % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
+                % (train_loss/(batch_idx+1), 100.*correct.item()/total, correct, total))
 
 def test(epoch):
     global best_acc
@@ -138,11 +138,11 @@ def test(epoch):
 
             if batch_idx%100==0:
                 print('Test Loss: %.3f | Test Acc: %.3f%% (%d/%d)'
-                    % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
+                    % (test_loss/(batch_idx+1), 100.*correct.item()/total, correct, total))
 
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
     test_loss/len(testloader), correct, total,
-    100. * correct / total))
+    100. * correct.item() / total))
 
 datasize = 50000
 num_batch = datasize/args.batch_size+1

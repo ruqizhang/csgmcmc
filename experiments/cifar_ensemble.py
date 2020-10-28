@@ -84,7 +84,7 @@ def test():
 
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
         test_loss/len(testloader), correct, total,
-        100. * correct / total))
+        100. * correct.item() / total))
     pred_list = torch.cat(pred_list,0)
     return pred_list,truth_res
 
